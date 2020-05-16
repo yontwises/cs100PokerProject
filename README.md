@@ -22,4 +22,5 @@ F:
   Output: Essentially is the combinations of cards that come out, showing whether it is winning hand or not. 
 
 
+![](Images/UML_Diagram%201.0.PNG)
 
