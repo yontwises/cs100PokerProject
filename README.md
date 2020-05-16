@@ -21,6 +21,8 @@ F:
   Input involves planning how much you are betting in poker
   Output: Essentially is the combinations of cards that come out, showing whether it is winning hand or not. 
 
-
+A:
 ![](Images/UML_Diagram1.0.PNG)
 
+B: 
+Our Poker Game consists of three design patterns: visitor, composite and iterator. We utilize the composite pattern by implementing a component class called Player that implements default behavior for its leaves. Its leaves are the users that are playing the game (Player1, Player2, Player3...). We use the iterator design pattern by iterating through our deck of cards after each round. We also iterate through the Players in order to simulate each player's turn. We will use the visitor design pattern to implement our currency system. Since Poker utilizes different types of chips for its currency, we can implement a visit function for each chip that visits the Poker Game's currency. The Poker Game's accept function will add the chip's value to the MoneyPool. 
