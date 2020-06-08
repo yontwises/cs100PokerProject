@@ -6,6 +6,8 @@
 
 using namespace std;
 
+class Visitor;
+
 //this class can be used for the total number of money for a single player or total game
 //chips will have the following rubric:
     // White, $1
@@ -15,152 +17,98 @@ using namespace std;
     // Black, $100
 class Chips {
     public: 
+        Chips();
         virtual void accept(Visitor* v,int num) = 0;
         virtual void add(int num) = 0;
         virtual void subtract(int num) = 0;
 };
 
-class white : public Chips {  
+class White : public Chips {  
     private:
         int dollarAmount; //total amount of chips in dollar units
         int whiteCount; 
     public:
-        white() {
-            dollarAmount = 0;
-            whiteCount = 0;
-        }
-         virtual void add(int num) {
-            whiteCount = whiteCount + num;
-            setDollarAmount();
-        }
-        virtual void subtract(int num) {
-            whiteCount = whiteCount - num;
-            setDollarAmount();
-        }
+        White();
+         virtual void add(int num);
+        virtual void subtract(int num);
 
-         virtual void accept(Visitor* v,int num) {
-            v->visit(this, num);
-        }
+        virtual void accept(Visitor* v,int num);
 
-          void setDollarAmount() {
-            dollarAmount = whiteCount * 1;
-        }
+        void setDollarAmount();
+        int getWhiteCount();
+        int getDollarAmount() const ;
 
 
 
 };
 
-class red : public Chips {
+class Red : public Chips {
     private:
         int dollarAmount; //total amount of chips in dollar units
         int redCount; 
     public:
-        red() {
-            dollarAmount = 0;
-            redCount = 0;
-        }
-        virtual void add(int num) {
-            redCount = redCount + num;
-            setDollarAmount();
-        }
-        virtual void subtract(int num) {
-            redCount = redCount - num;
-            setDollarAmount();
-        }
+        Red();
+        virtual void add(int num);
+        virtual void subtract(int num);
 
-         virtual void accept(Visitor* v,int num) {
-            v->visit(this, num);
-        }
-          void setDollarAmount() {
-            dollarAmount = redCount * 5;
-        }
+        virtual void accept(Visitor* v,int num);
+
+        void setDollarAmount();
+        int getRedCount() const;
+        int getDollarAmount() const;
+
         
 };
 
-class blue : public Chips {
+class Blue : public Chips {
     private: 
         int dollarAmount; //total amount of chips in dollar units
         int blueCount; 
     public:
-        blue() {
-            dollarAmount = 0;
-            blueCount = 0;
+        Blue();
+        virtual void add(int num);
+        virtual void subtract(int num);
+        virtual void accept(Visitor* v,int num);
 
-        }
-        virtual void add(int num) {
-            blueCount = blueCount + num;
-            setDollarAmount();
-        }
-        virtual void subtract(int num) {
-            blueCount = blueCount - num;
-            setDollarAmount();
-        }
-         virtual void accept(Visitor* v,int num) {
-            v->visit(this, num);
-        }
-
-        void setDollarAmount() {
-            dollarAmount = blueCount * 10;
-        }
+        void setDollarAmount();
+        int getBlueCount() const;
+        int getDollarAmount() const;
 
 
 
 };
 
-class green : public Chips {
+class Green : public Chips {
     private: 
         int dollarAmount; //total amount of chips in dollar units
         int greenCount; 
     public: 
-        green() {
-            dollarAmount = 0;
-            greenCount = 0;
-        }
-        virtual void add(int num) {
-            greenCount = greenCount + num;
-            setDollarAmount();
-        }
-        virtual void subtract(int num) {
-            greenCount = greenCount - num;
-            setDollarAmount();
-        }
+        Green() ;
+        virtual void add(int num);
+        virtual void subtract(int num);
 
-         virtual void accept(Visitor* v,int num) {
-            v->visit(this, num);
-        }
+         virtual void accept(Visitor* v,int num) ;
 
-          void setDollarAmount() {
-            dollarAmount = greenCount * 25;
-        }
-
-
+          void setDollarAmount() ;
+        int getGreenCount() const ;
+        int getDollarAmount() const ;
 };
 
-class black : public Chips {
+class Black : public Chips {
     private:
         int dollarAmount; //dollar amount 
         int blackCount; 
     public: 
-        black() {
-            blackCount = 0;
-            dollarAmount = 0;
-        }
-        virtual void add(int num) {
-            blackCount = blackCount - num;
-            setDollarAmount();
-        }
-        virtual void subtract(int num) {
-            blackCount = blackCount - num;
-             setDollarAmount();
-        }
+        Black() ;
+        virtual void add(int num) ;
+        virtual void subtract(int num) ;
 
-        virtual void accept(Visitor* v,int num) {
-            v->visit(this, num);
-        }
+        virtual void accept(Visitor* v,int num) ;
 
-        void setDollarAmount() {
-            dollarAmount = blackCount * 100;
-        }
+        void setDollarAmount() ;
+
+        int getBlackCount() const ;
+        int getDollarAmount() const ;
 
 
     
