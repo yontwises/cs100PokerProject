@@ -2,7 +2,7 @@
 #include<cctype>
 using namespace std;
 
-#include "Card.h"
+#include "card.hpp"
 
 
 Card::Card(){

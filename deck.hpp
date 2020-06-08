@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-#include "Card.h"
+#include "card.hpp"
 
 class Deck {
  private:

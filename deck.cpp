@@ -3,10 +3,10 @@
 
 using namespace std;
 
-#include "Deck.h"
-#include "Card.h"
+#include "deck.hpp"
+#include "card.hpp"
 
-  Deck::Deck(){s
+  Deck::Deck(){
     for (int i = 13; i > 0; --i) {
       theDeck.push_back(Card('s', i));
     }
