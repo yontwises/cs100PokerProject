@@ -101,3 +101,17 @@ Black* Poor::getblackChips() {
     return blackChips;
 }
 
+void Rich::addCard(Card dealtCard) {
+    playerHand.push_back(dealtCard);
+}
+void Poor::addCard(Card dealtCard) {
+    playerHand.push_back(dealtCard);
+}
+
+vector<Card> Rich::get_hand() const {
+    return playerHand;
+}
+
+vector<Card> Poor::get_hand() const {
+    return playerHand;
+}

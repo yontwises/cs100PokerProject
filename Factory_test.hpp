@@ -15,6 +15,10 @@ TEST(factoryTest, RichTest) {
     if (test->getblackChips() == nullptr) {
         std::cout << "blackchips is nullptr" << std::endl;
     }
+
+    Card testCard('c',2);
+    test->addCard(testCard);
+    EXPECT_EQ('c', test->get_hand().at(0).getSuit());
     
     EXPECT_EQ(5,test->getblackChips()->getBlackCount());
     // std::cout << "potato" << std::endl;
@@ -37,8 +41,12 @@ TEST(factoryTest, PoorTest) {
     EXPECT_EQ(20,test->getBlueChips()->getBlueCount());
     EXPECT_EQ(30,test->getRedChips()->getRedCount());
     EXPECT_EQ(50, test->getWhiteChips()->getWhiteCount());  
+
+
+    Card testCard = Card('c',2);
+    test->addCard(testCard);
+    EXPECT_EQ('c', test->get_hand().at(0).getSuit());
 }
 
 #endif
-
 
