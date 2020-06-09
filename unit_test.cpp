@@ -2,6 +2,7 @@
 
 #include "ChipsVisitor_test.hpp"
 #include "Factory_test.hpp"
+#include "Decorator_test.hpp"
 
 
 int main(int argc, char **argv) {

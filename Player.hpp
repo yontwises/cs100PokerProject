@@ -12,6 +12,16 @@ class Player {
         virtual int getPlayerTotalMoney() const = 0;
         virtual void setPlayerTotalMoney() = 0;
 
+        virtual White* getWhiteChips() = 0;
+        virtual Red* getRedChips() = 0;
+        virtual Blue* getBlueChips() = 0;
+        virtual Green* getGreenChips() = 0;
+        virtual Black* getblackChips() = 0;
+
+       
+        
+
+
   
 
 };
@@ -38,6 +48,11 @@ class Rich : public Player {
         virtual int getPlayerTotalMoney() const  ;
         virtual void setPlayerTotalMoney() ;
 
+        virtual White* getWhiteChips();
+        virtual Red* getRedChips() ;
+        virtual Blue* getBlueChips() ;
+        virtual Green* getGreenChips() ;
+        virtual Black* getblackChips() ;
     
 };
 
@@ -45,7 +60,7 @@ class Rich : public Player {
 class Poor : public Player {
     private: 
 
-        int playerNum; //1
+        int playerNum; //2
         int playerCurrencyTotal;
         // bool littleBlind;
         // bool bigBlind;
@@ -63,6 +78,11 @@ class Poor : public Player {
         virtual int getPlayerTotalMoney() const  ;
         virtual void setPlayerTotalMoney() ;
 
+        virtual White* getWhiteChips();
+        virtual Red* getRedChips() ;
+        virtual Blue* getBlueChips() ;
+        virtual Green* getGreenChips() ;
+        virtual Black* getblackChips() ;
        
 
 };

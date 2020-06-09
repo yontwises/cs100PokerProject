@@ -11,7 +11,7 @@ ADD_EXECUTABLE(test
     ChipsVisitor.cpp
     Factory.cpp
     Player.cpp
-    
+    Decorator.cpp
 
 )
 
