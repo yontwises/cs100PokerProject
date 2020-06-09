@@ -192,12 +192,13 @@ return -1;
 
 
 //Betting system declarations
-void BettingSystem();
+// void BettingSystem();
 
 
 int menu(){
-	int choice = 0;
-	while(choice != 1 || choice != 2 || choice != 3 || choice != 4 || choice != 5){
+    int choice = 0;
+    
+	while (choice < 1 || choice > 5 ){
 		cout << "-----Options-----" << endl;
 		cout << "1: Check" << endl;
 		cout << "2: Raise" << endl;
@@ -205,22 +206,26 @@ int menu(){
         cout << "4: Player Info" << endl;
         cout << "5: Fold" << endl;
 		cout << "Select an option" << endl;
+        cin >> choice;
 	}
-  cin >> choice;
+  
 	return choice;
 }
 
 int revisedMenu(){
-	int choice = 0;
-	while(choice != 1 || choice != 2 || choice != 3 || choice != 4){
-		cout << "-----Options-----" << endl;
-		cout << "1: Raise" << endl;
-		cout << "2: Convert dollar amount to chips" << endl;
-        cout << "3: Player Info" << endl;
-        cout << "4: Fold" << endl;
-		cout << "Select an option" << endl;
-	}
-  cin >> choice;
+        int choice = 0;
+        
+    
+        while(choice < 1 || choice > 4){
+            cout << "-----Options-----" << endl;
+            cout << "1: Raise" << endl;
+            cout << "2: Convert dollar amount to chips" << endl;
+            cout << "3: Player Info" << endl;
+            cout << "4: Fold" << endl;
+            cout << "Select an option" << endl;
+            cin >> choice;
+        }
+  
 	return choice;
 }
 
@@ -253,8 +258,8 @@ int main(){
 		//create the characters
     
 		cout << "Player: " << i + 1 << endl;
-		cout << "1: Minimum buy in." << endl;
-		cout << "2: Maximum buy in." << endl;
+		cout << "1: Maximum buy in." << endl;
+		cout << "2: Minimum buy in." << endl;
         cout << "Enter 1 or 2 to choose" << endl;
 
     int factoryOption; 
@@ -276,7 +281,7 @@ int main(){
 	cout << endl;
 
 
-    cout << "Shuffling Deck!" << endl;
+    cout << "Shuffling Deck!" << endl << endl;
 while(gameCont == 1){
 	//Shuffling the deck.
     
@@ -285,13 +290,14 @@ while(gameCont == 1){
 	//Deal each player their 5 cards
    
 	for(int i = 0; i < numPlayers; ++i){
-		for(int j = 0; i < 5; ++j) { 
+		for(int j = 0; j < 5; ++j) { 
 			playerVec.at(i)->addCard(newDeck.dealCard());
 		}
 	}
-    cout << "Adding ante to the pot" << endl;
+    cout << "Adding ante to the pot!" << endl << endl;
     for(unsigned int i = 0; i < playerVec.size(); ++i) {
         playerVec.at(i)->getWhiteChips()->accept(subVisit, 1);
+        playerVec.at(i)->setPlayerTotalMoney();
     }
     whitePot->accept(addVisit, 1); 
 
@@ -304,77 +310,90 @@ while(gameCont == 1){
   bool checkOccured = false;
 	for(int i = 0; i < numPlayers; ++i){
 		cout << "Player: " << i + 1 << endl;
-		choice = menu();
+		choice = menu(); 
+        
 		if(choice == 1){
 			//PASS/CHECK
             roundNum = i + 1;
             checkOccured = true;
-      break;
+        break;
 		}
 		else if(choice == 2){
 			//Betting system
 			int color; 
             int amount;
-            int userInput; 
+            char userInput = 'a'; 
             AddVisitor* addChips;
             SubVisitor* subChips;
             while (userInput != 'q') {
-                cout << "Choose what color chip you would like to bet" << endl;
-                cout << "1. White" << endl;
-                cout << "2. Red" << endl;
-                cout << "3. Blue" << endl;
-                cout << "4. Green" << endl;
-                cout << "5. Black" << endl; 
-
-                cin >> color;
+                color = 0;
+                amount = 0;
+                userInput = 0;
+                while (color < 1 || color > 5) {
+                    cout << "Choose what color chip you would like to bet" << endl;
+                    cout << "1. White" << endl;
+                    cout << "2. Red" << endl;
+                    cout << "3. Blue" << endl;
+                    cout << "4. Green" << endl;
+                    cout << "5. Black" << endl; 
+                    cin >> color;
+                }   
                 cout << "How many chips would you like to bet?" << endl; 
                 cin >> amount; 
                 
                 if (color == 1) {
                     playerVec.at(i)->getWhiteChips()->accept(subChips, amount);
                     whitePot->accept(addChips, amount);
+                    playerVec.at(i)->setPlayerTotalMoney();
                 }
                 if (color == 2) {
                 playerVec.at(i )->getRedChips()->accept(subChips, amount);
                     redPot->accept(addChips, amount);
+                    playerVec.at(i)->setPlayerTotalMoney();
                 }
                 if (color == 3) {
                 playerVec.at(i )->getBlueChips()->accept(subChips, amount);
                     bluePot->accept(addChips, amount);
+                    playerVec.at(i)->setPlayerTotalMoney();
                 }
                 if (color == 4) {
                 playerVec.at(i )->getGreenChips()->accept(subChips, amount);
                     greenPot->accept(addChips, amount);
+                    playerVec.at(i)->setPlayerTotalMoney();
                 }
                 if (color == 5) {
                 playerVec.at(i)->getblackChips()->accept(subChips, amount);
                     blackPot->accept(addChips, amount);
+                    playerVec.at(i)->setPlayerTotalMoney();
                 }
-                cout << "Enter any character to continue betting. Enter q to stop." << endl; 
+                cout << "Enter any character to continue betting. Enter q to stop betting." << endl; 
                 cin >> userInput;
                 
             }
 		}
-		else if(choice == 3){
-			//call decorator calculator 
+	  else if(choice == 3){
+        	//call decorator calculator 
             int dollarAmount;
-            White* whiteAmount;
-            Red* redAmount; 
-            Blue* blueAmount;
-            Green* greenAmount;
-            Black* blackAmount;
+            White* whiteAmount = new White();
+            Red* redAmount = new Red(); 
+            Blue* blueAmount = new Blue();
+            Green* greenAmount = new Green();
+            Black* blackAmount = new Black();
             cout << "Enter a dollar amount you would like to convert into chips" << endl;
             cin >> dollarAmount;
             Decorator* dec = new Decorator(dollarAmount); 
-            cout << "White Chips: " << whiteAmount->getWhiteCount() << endl;
-            cout << "Red Chips: " << redAmount->getRedCount() << endl;
-            cout << "Blue Chips: " << blueAmount->getBlueCount() << endl;
-            cout << "Green Chips: " << greenAmount->getGreenCount() << endl;
-            cout << "Black Chips: " << blackAmount->getBlackCount() << endl;
-		}
+            cout << "White Chips: " << dec->getWhiteChips() << endl;
+            cout << "Red Chips: " << dec->getRedChips() << endl;
+            cout << "Blue Chips: " << dec->getBlueChips() << endl;
+            cout << "Green Chips: " << dec->getGreenChips() << endl;
+            cout << "Black Chips: " << dec->getBlackChips() << endl << endl;
+            i = i - 1;
+      }
         else if (choice == 4 ) {
         //player stats output player's hand, num, chips
          playerVec.at(i)->playerInfo();
+         i = i - 1;
+         cout << endl;
         }
         else if (choice == 5 ) {
         //fold
@@ -384,72 +403,84 @@ while(gameCont == 1){
   if (checkOccured) {
     for(int i = roundNum; i < numPlayers; ++i){
       cout << "Player: " << i + 1 << endl;
-      choice = menu();
+      choice = revisedMenu();
 
       if(choice == 1){
         //Betting system
-        int color; 
-        int amount;
-        int userInput; 
-        AddVisitor* addChips;
-        SubVisitor* subChips;
-  while (userInput != 'q') {
-    cout << "Choose what color chip you would like to bet" << endl;
-    cout << "1. White" << endl;
-    cout << "2. Red" << endl;
-    cout << "3. Blue" << endl;
-    cout << "4. Green" << endl;
-    cout << "5. Black" << endl; 
-
-    cin >> color;
-    cout << "How many chips would you like to bet?" << endl; 
-    cin >> amount; 
-    
-    if (color == 1) {
-        playerVec.at(i)->getWhiteChips()->accept(subChips, amount);
-        whitePot->accept(addChips, amount);
-    }
-    if (color == 2) {
-       playerVec.at(i )->getRedChips()->accept(subChips, amount);
-        redPot->accept(addChips, amount);
-    }
-    if (color == 3) {
-       playerVec.at(i )->getBlueChips()->accept(subChips, amount);
-        bluePot->accept(addChips, amount);
-    }
-    if (color == 4) {
-       playerVec.at(i )->getGreenChips()->accept(subChips, amount);
-        greenPot->accept(addChips, amount);
-    }
-    if (color == 5) {
-       playerVec.at(i)->getblackChips()->accept(subChips, amount);
-        blackPot->accept(addChips, amount);
-    }
-    cout << "Enter any character to continue betting. Enter q to stop." << endl; 
-    cin >> userInput;
-    
-	}
-      }
+			int color; 
+            int amount;
+            char userInput = 'a'; 
+            AddVisitor* addChips = new AddVisitor();
+            SubVisitor* subChips = new SubVisitor();
+            while (userInput != 'q') {
+                color = 0;
+                amount = 0;
+                userInput = 0;
+                while (color < 1 || color > 5) {
+                    cout << "Choose what color chip you would like to bet" << endl;
+                    cout << "1. White" << endl;
+                    cout << "2. Red" << endl;
+                    cout << "3. Blue" << endl;
+                    cout << "4. Green" << endl;
+                    cout << "5. Black" << endl; 
+                    cin >> color;
+                }   
+                cout << "How many chips would you like to bet?" << endl; 
+                cin >> amount; 
+                
+                if (color == 1) {
+                    playerVec.at(i)->getWhiteChips()->accept(subChips, amount);
+                    whitePot->accept(addChips, amount);
+                    playerVec.at(i)->setPlayerTotalMoney();
+                }
+                if (color == 2) {
+                playerVec.at(i )->getRedChips()->accept(subChips, amount);
+                    redPot->accept(addChips, amount);
+                    playerVec.at(i)->setPlayerTotalMoney();
+                }
+                if (color == 3) {
+                playerVec.at(i )->getBlueChips()->accept(subChips, amount);
+                    bluePot->accept(addChips, amount);
+                    playerVec.at(i)->setPlayerTotalMoney();
+                }
+                if (color == 4) {
+                playerVec.at(i )->getGreenChips()->accept(subChips, amount);
+                    greenPot->accept(addChips, amount);
+                    playerVec.at(i)->setPlayerTotalMoney();
+                }
+                if (color == 5) {
+                playerVec.at(i)->getblackChips()->accept(subChips, amount);
+                    blackPot->accept(addChips, amount);
+                    playerVec.at(i)->setPlayerTotalMoney();
+                }
+                cout << "Enter any character to continue betting. Enter q to stop betting." << endl; 
+                cin >> userInput;
+                
+            }
+		}
       else if(choice == 2){
         	//call decorator calculator 
             int dollarAmount;
-            White* whiteAmount;
-            Red* redAmount; 
-            Blue* blueAmount;
-            Green* greenAmount;
-            Black* blackAmount;
+            White* whiteAmount = new White();
+            Red* redAmount = new Red(); 
+            Blue* blueAmount = new Blue();
+            Green* greenAmount = new Green();
+            Black* blackAmount = new Black();
             cout << "Enter a dollar amount you would like to convert into chips" << endl;
             cin >> dollarAmount;
             Decorator* dec = new Decorator(dollarAmount); 
-            cout << "White Chips: " << whiteAmount->getWhiteCount() << endl;
-            cout << "Red Chips: " << redAmount->getRedCount() << endl;
-            cout << "Blue Chips: " << blueAmount->getBlueCount() << endl;
-            cout << "Green Chips: " << greenAmount->getGreenCount() << endl;
-            cout << "Black Chips: " << blackAmount->getBlackCount() << endl;
+            cout << "White Chips: " << dec->getWhiteChips() << endl;
+            cout << "Red Chips: " << dec->getRedChips() << endl;
+            cout << "Blue Chips: " << dec->getBlueChips() << endl;
+            cout << "Green Chips: " << dec->getGreenChips() << endl;
+            cout << "Black Chips: " << dec->getBlackChips() << endl << endl;
+            i = i - 1;
       }
       else if (choice == 3 ) {
         //player stats output player's hand, num, chips
         playerVec.at(i)->playerInfo();
+        cout << endl;
+        i = i - 1;
       }
       else if (choice == 4 ) {
         //fold

@@ -19,6 +19,10 @@ TEST(factoryTest, RichTest) {
     Card testCard('c',2);
     test->addCard(testCard);
     EXPECT_EQ('c', test->get_hand().at(0).getSuit());
+
+    Card testCardTwo('s',2);
+    test->addCard(testCardTwo);
+    EXPECT_EQ('s', test->get_hand().at(1).getSuit());
     
     EXPECT_EQ(5,test->getblackChips()->getBlackCount());
     // std::cout << "potato" << std::endl;
