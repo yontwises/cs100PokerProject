@@ -9,6 +9,9 @@ ADD_EXECUTABLE(test
     unit_test.cpp
     chips.cpp
     ChipsVisitor.cpp
+    Factory.cpp
+    Player.cpp
+    Decorator.cpp
 
 )
 
