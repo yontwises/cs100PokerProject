@@ -1,5 +1,7 @@
 #include<iostream>
 #include<algorithm>
+#include <random>
+#include <chrono>
 
 using namespace std;
 
@@ -35,8 +37,8 @@ using namespace std;
       theDeck.push_back(dealtCards.at(i));
     }
     dealtCards.clear();
-    random_shuffle(theDeck.begin(), theDeck.end());
-  }
+    
+    shuffle(theDeck.begin(), theDeck.end(), default_random_engine());  }
 
   unsigned Deck::deckSize()const {
     return theDeck.size();
