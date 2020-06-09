@@ -1,6 +1,8 @@
 #include "Player.hpp"
 
+Player::Player() {
 
+}
 Rich::Rich() {
     playerNum = 0;
     White* whiteChips = new White(); // 50 
@@ -17,7 +19,7 @@ Rich::Rich() {
     whiteChips->add(50);
 
     playerCurrencyTotal = whiteChips->getDollarAmount() + redChips->getDollarAmount() + blueChips->getDollarAmount() + greenChips->getDollarAmount() + blackChips->getDollarAmount(); 
-    playerHand.resize(5);
+    // playerHand.resize(5);
 }
 
 Poor::Poor() {
@@ -35,7 +37,7 @@ Poor::Poor() {
     redChips->add(30);
     whiteChips->add(50);
     playerCurrencyTotal = whiteChips->getDollarAmount() + redChips->getDollarAmount() + blueChips->getDollarAmount() + greenChips->getDollarAmount() + blackChips->getDollarAmount(); 
-    playerHand.resize(5);
+    // playerHand.resize(5);
 }
 
 int Rich::getPlayerNum() const {

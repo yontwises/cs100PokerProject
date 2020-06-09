@@ -3,6 +3,8 @@
 
 #include "Player.hpp"
 
+class Player;
+
 class Factory {
     private: 
         Player* tempPlayer; //this tempPlayer will be used to assign another Player*
