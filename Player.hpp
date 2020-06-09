@@ -3,7 +3,10 @@
 
 #include "chips.hpp"
 #include "deck.hpp"
+#include "card.hpp"
+#include <vector>
 
+class Card;
 class Player {
     public:
         Player(); 
@@ -17,6 +20,8 @@ class Player {
         virtual Blue* getBlueChips() = 0;
         virtual Green* getGreenChips() = 0;
         virtual Black* getblackChips() = 0;
+        virtual void addCard(Card ) = 0;  
+        virtual vector<Card> get_hand() const = 0;
 
        
         
@@ -34,7 +39,7 @@ class Rich : public Player {
         int playerCurrencyTotal;
         // bool littleBlind;
         // bool bigBlind;
-        vector<Card*> playerHand;
+        vector<Card> playerHand;
 
         White* whiteChips;
         Red* redChips;
@@ -53,6 +58,8 @@ class Rich : public Player {
         virtual Blue* getBlueChips() ;
         virtual Green* getGreenChips() ;
         virtual Black* getblackChips() ;
+        virtual void addCard(Card ) ; 
+        virtual vector<Card> get_hand() const ;
     
 };
 
@@ -64,7 +71,7 @@ class Poor : public Player {
         int playerCurrencyTotal;
         // bool littleBlind;
         // bool bigBlind;
-        vector<Card*> playerHand;
+        vector<Card> playerHand;
 
         White* whiteChips;
         Red* redChips;
@@ -83,7 +90,8 @@ class Poor : public Player {
         virtual Blue* getBlueChips() ;
         virtual Green* getGreenChips() ;
         virtual Black* getblackChips() ;
-       
+        virtual void addCard(Card ) ; 
+        virtual vector<Card> get_hand() const ;
 
 };
 

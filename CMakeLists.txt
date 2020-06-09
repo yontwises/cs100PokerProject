@@ -12,6 +12,8 @@ ADD_EXECUTABLE(test
     Factory.cpp
     Player.cpp
     Decorator.cpp
+    deck.cpp
+    card.cpp
 
 )
 
