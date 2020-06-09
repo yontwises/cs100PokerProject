@@ -17,7 +17,16 @@ ADD_EXECUTABLE(test
 
 )
 
-
+ADD_EXECUTABLE( final
+    chips.cpp
+    ChipsVisitor.cpp
+    Factory.cpp
+    Player.cpp
+    Decorator.cpp
+    deck.cpp
+    card.cpp
+    main.cpp
+)
 
 
 TARGET_LINK_LIBRARIES(test gtest)

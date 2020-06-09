@@ -115,3 +115,21 @@ vector<Card> Rich::get_hand() const {
 vector<Card> Poor::get_hand() const {
     return playerHand;
 }
+
+void Rich::playerInfo() {
+    cout << "Player Number: " << playerNum << endl;
+    cout << "Total Amount of Dollars " << playerCurrencyTotal << endl;
+    cout << "White Chips: " << whiteChips->getWhiteCount() << endl;
+    cout << "Red Chips: " << redChips->getRedCount() << endl;
+    cout << "Blue Chips: " << blueChips->getBlueCount() << endl;
+    cout << "Black Chips: " << blackChips->getBlackCount() << endl;
+}
+
+void Poor::playerInfo() {
+    cout << "Player Number: " << playerNum << endl;
+    cout << "Total Amount of Dollars " << playerCurrencyTotal << endl;
+    cout << "White Chips: " << whiteChips->getWhiteCount() << endl;
+    cout << "Red Chips: " << redChips->getRedCount() << endl;
+    cout << "Blue Chips: " << blueChips->getBlueCount() << endl;
+    cout << "Black Chips: " << blackChips->getBlackCount() << endl;
+}

@@ -5,6 +5,8 @@
 #include "deck.hpp"
 #include "card.hpp"
 #include <vector>
+#include <iostream>
+using namespace std;
 
 class Card;
 class Player {
@@ -22,6 +24,7 @@ class Player {
         virtual Black* getblackChips() = 0;
         virtual void addCard(Card ) = 0;  
         virtual vector<Card> get_hand() const = 0;
+        virtual void playerInfo() = 0;
 
        
         
@@ -60,6 +63,7 @@ class Rich : public Player {
         virtual Black* getblackChips() ;
         virtual void addCard(Card ) ; 
         virtual vector<Card> get_hand() const ;
+        virtual void playerInfo();
     
 };
 
@@ -92,6 +96,7 @@ class Poor : public Player {
         virtual Black* getblackChips() ;
         virtual void addCard(Card ) ; 
         virtual vector<Card> get_hand() const ;
+        virtual void playerInfo();
 
 };
 
