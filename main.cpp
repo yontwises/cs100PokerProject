@@ -488,7 +488,14 @@ while(gameCont == 1){
 	  }
   }
 	//give the total amount of chips bet to the winning hand.
-
+	//Declare winner
+	int winIndex = 0;
+	for(unsigned int i = 0; i < playerVec.size(); ++i){
+		if(declareRank(playerVec.at(i)->get_hand()) > declareRank(playerVec.at(winIndex)->get_hand())){
+			winIndex = i;
+		}
+	}
+	cout << "Player: " << winIndex + 1 << " wins!" << endl;
 
 
 	cout << "Do you want to continue to the next round?" << endl;
