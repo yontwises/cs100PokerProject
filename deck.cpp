@@ -1,12 +1,14 @@
 #include<iostream>
 #include<algorithm>
+#include <random>
+#include <chrono>
 
 using namespace std;
 
-#include "Deck.h"
-#include "Card.h"
+#include "deck.hpp"
+#include "card.hpp"
 
-  Deck::Deck(){s
+  Deck::Deck(){
     for (int i = 13; i > 0; --i) {
       theDeck.push_back(Card('s', i));
     }
@@ -35,8 +37,8 @@ using namespace std;
       theDeck.push_back(dealtCards.at(i));
     }
     dealtCards.clear();
-    random_shuffle(theDeck.begin(), theDeck.end());
-  }
+    
+    shuffle(theDeck.begin(), theDeck.end(), default_random_engine());  }
 
   unsigned Deck::deckSize()const {
     return theDeck.size();
