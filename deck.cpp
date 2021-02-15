@@ -38,7 +38,7 @@ using namespace std;
     }
     dealtCards.clear();
     
-    shuffle(theDeck.begin(), theDeck.end(), default_random_engine());  }
+shuffle(theDeck.begin(), theDeck.end(), default_random_engine());  }
 
   unsigned Deck::deckSize()const {
     return theDeck.size();

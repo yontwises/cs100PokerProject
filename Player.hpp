@@ -3,7 +3,12 @@
 
 #include "chips.hpp"
 #include "deck.hpp"
+#include "card.hpp"
+#include <vector>
+#include <iostream>
+using namespace std;
 
+class Card;
 class Player {
     public:
         Player(); 
@@ -11,6 +16,19 @@ class Player {
         virtual int getPlayerNum() const = 0 ;
         virtual int getPlayerTotalMoney() const = 0;
         virtual void setPlayerTotalMoney() = 0;
+
+        virtual White* getWhiteChips() = 0;
+        virtual Red* getRedChips() = 0;
+        virtual Blue* getBlueChips() = 0;
+        virtual Green* getGreenChips() = 0;
+        virtual Black* getblackChips() = 0;
+        virtual void addCard(Card ) = 0;  
+        virtual vector<Card> get_hand() const = 0;
+        virtual void playerInfo() = 0;
+
+       
+        
+
 
   
 
@@ -24,7 +42,7 @@ class Rich : public Player {
         int playerCurrencyTotal;
         // bool littleBlind;
         // bool bigBlind;
-        vector<Card*> playerHand;
+        vector<Card> playerHand;
 
         White* whiteChips;
         Red* redChips;
@@ -38,6 +56,14 @@ class Rich : public Player {
         virtual int getPlayerTotalMoney() const  ;
         virtual void setPlayerTotalMoney() ;
 
+        virtual White* getWhiteChips();
+        virtual Red* getRedChips() ;
+        virtual Blue* getBlueChips() ;
+        virtual Green* getGreenChips() ;
+        virtual Black* getblackChips() ;
+        virtual void addCard(Card ) ; 
+        virtual vector<Card> get_hand() const ;
+        virtual void playerInfo();
     
 };
 
@@ -45,11 +71,11 @@ class Rich : public Player {
 class Poor : public Player {
     private: 
 
-        int playerNum; //1
+        int playerNum; //2
         int playerCurrencyTotal;
         // bool littleBlind;
         // bool bigBlind;
-        vector<Card*> playerHand;
+        vector<Card> playerHand;
 
         White* whiteChips;
         Red* redChips;
@@ -63,7 +89,14 @@ class Poor : public Player {
         virtual int getPlayerTotalMoney() const  ;
         virtual void setPlayerTotalMoney() ;
 
-       
+        virtual White* getWhiteChips();
+        virtual Red* getRedChips() ;
+        virtual Blue* getBlueChips() ;
+        virtual Green* getGreenChips() ;
+        virtual Black* getblackChips() ;
+        virtual void addCard(Card ) ; 
+        virtual vector<Card> get_hand() const ;
+        virtual void playerInfo();
 
 };
 
